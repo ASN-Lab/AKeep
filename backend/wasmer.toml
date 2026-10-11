@@ -1,0 +1,9 @@
+[package]
+name = "akeep-backend"
+version = "0.1.0"
+description = "AKeep Laravel Backend"
+
+[[module]]
+name = "php-laravel"
+source = "Dockerfile"
+abi = "wasi" # Wasmer Edge typical requirement for native builds
