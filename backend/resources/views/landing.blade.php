@@ -136,7 +136,7 @@
                     API STATUS: OPERATIONAL
                 </div>
                 <a href="/admin/login" class="nav-link">Admin Panel</a>
-                <a href="#download" class="btn btn-ghost btn-sm">Download APK</a>
+                <a href="https://github.com/ASN-Lab/AKeep/releases/latest/download/app-release.apk" class="btn btn-ghost btn-sm">Download APK</a>
             </div>
         </div>
     </header>
@@ -145,7 +145,7 @@
         <h1>Lacak Aset &<br><span class="accent">Garansi</span> Tanpa Lupa.</h1>
         <p>Personal Asset, Warranty & Maintenance Tracker. Offline-first, ringan, dan bebas biaya server.</p>
         <div class="hero-cta">
-            <a href="#download" class="btn btn-primary">Download APK</a>
+            <a href="https://github.com/ASN-Lab/AKeep/releases/latest/download/app-release.apk" class="btn btn-primary">Download APK</a>
             <a href="/admin/login" class="btn btn-ghost">Buka Admin Panel</a>
         </div>
     </section>
