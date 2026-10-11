@@ -1,0 +1,36 @@
+# Logs & Session files
+session-*.md
+*.log
+DEVELOPMENT.md
+PROJECT_SPESIFICATION.md
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Database
+*.sqlite
+*.sqlite-journal
+
+# Vendor & Node modules
+/backend/vendor/
+/backend/node_modules/
+/backend/public/build/
+/backend/public/hot
+/backend/public/storage
+
+# IDE & OS
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Mobile Flutter build artifacts
+mobile/build/
+mobile/.dart_tool/
+mobile/.flutter-plugins
+mobile/.flutter-plugins-dependencies
+
