@@ -1,6 +1,6 @@
 FROM php:8.2-fpm-alpine
 
-WORKDIR /var/www
+WORKDIR /app
 
 RUN apk add --no-cache \
     libpng-dev \
@@ -19,6 +19,8 @@ COPY . .
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
 RUN php artisan key:generate
+
+RUN chmod -R 777 storage bootstrap/cache
 
 EXPOSE 8000
 

@@ -22,7 +22,7 @@ env:
   LOG_STACK: stderr
 
 command: "/usr/local/bin/php"
-arguments: ["-S", "0.0.0.0:8000", "-t", "/app/public", "/app/server.php"]
+arguments: ["-t", "/app/public", "-S", "0.0.0.0:8000", "/app/public/index.php"]
 kind: wasmer.io/App.v0
 owner: asn-lab
 app_id: da_Ra7IetdUYza7
