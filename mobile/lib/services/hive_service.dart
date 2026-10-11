@@ -9,6 +9,11 @@ class HiveService {
     await Hive.openBox(queueBox);
   }
 
+  static Future<void> clearAll() async {
+    await assets.clear();
+    await queue.clear();
+  }
+
   static Box get assets => Hive.box(assetBox);
   static Box get queue => Hive.box(queueBox);
 }

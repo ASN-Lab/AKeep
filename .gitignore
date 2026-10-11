@@ -3,6 +3,7 @@ session-*.md
 *.log
 DEVELOPMENT.md
 PROJECT_SPESIFICATION.md
+strix_runs/
 
 # Environment files
 .env

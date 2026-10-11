@@ -34,9 +34,11 @@ class AccountScreen extends StatelessWidget {
             leading: const Icon(Icons.logout),
             title: const Text('Logout'),
             onTap: () async {
+              await HiveService.clearAll();
               final prefs = await SharedPreferences.getInstance();
               await prefs.remove('auth_token');
               if (context.mounted) {
+                Provider.of<AssetProvider>(context, listen: false).loadAssets();
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(

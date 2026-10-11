@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../services/api_service.dart';
+import '../../services/hive_service.dart';
 import '../home/home_dashboard_screen.dart';
 import 'register_screen.dart';
 
@@ -30,6 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
         'password': _passwordController.text,
       });
       final token = res.data['token'];
+      await HiveService.clearAll(); // Clear old data
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString('auth_token', token);
 

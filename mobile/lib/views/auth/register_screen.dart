@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../services/api_service.dart';
+import '../../services/hive_service.dart';
 import '../home/home_dashboard_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -30,6 +31,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         'password': _passwordController.text,
       });
       final token = res.data['token'];
+      await HiveService.clearAll();
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString('auth_token', token);
 
