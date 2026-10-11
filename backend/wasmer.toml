@@ -1,9 +1,13 @@
 [package]
-name = "akeep-backend"
-version = "0.1.0"
+name = "asn-lab/AKeep"
+version = "0.1.2"
 description = "AKeep Laravel Backend"
 
 [[module]]
-name = "php-laravel"
+name = "akeep-backend"
 source = "Dockerfile"
-abi = "wasi" # Wasmer Edge typical requirement for native builds
+abi = "wasi"
+[[module.command]]
+name = "web"
+entrypoint = "/usr/local/bin/php"
+arguments = ["/app/artisan", "serve", "--host=0.0.0.0", "--port=8000"]

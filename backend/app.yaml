@@ -1,0 +1,12 @@
+name: akeep-backend
+package: asn-lab/AKeep@0.1.2
+
+fs:
+  - .
+
+env:
+  APP_ENV: production
+  APP_DEBUG: "false"
+
+command: "/usr/local/bin/php"
+arguments: ["/app/artisan", "serve", "--host=0.0.0.0", "--port=8000"]
