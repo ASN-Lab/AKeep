@@ -1,4 +1,4 @@
-name: Build & Release APK
+name: Build and Release APK
 
 on:
   push:
@@ -8,16 +8,35 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: mobile
     steps:
-      - uses: actions/checkout@v4
-      - uses: subosito/flutter-action@v2
+      - uses: actions/checkout@v3
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
         with:
-          channel: stable
-      - run: flutter pub get
-      - run: flutter build apk --release --split-per-abi
-      - uses: softprops/action-gh-release@v2
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
         with:
-          files: build/app/outputs/flutter-apk/*.apk
+          flutter-version: '3.19.x'
+          channel: 'stable'
+          cache: true
+
+      - name: Install Dependencies
+        run: |
+          cd mobile
+          flutter pub get
+
+      - name: Build APK Release
+        run: |
+          cd mobile
+          flutter build apk --release
+
+      - name: Upload Release APK
+        uses: softprops/action-gh-release@v1
+        with:
+          files: mobile/build/app/outputs/flutter-apk/app-release.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
