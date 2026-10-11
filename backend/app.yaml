@@ -6,7 +6,7 @@ fs:
 
 env:
   APP_ENV: production
-  APP_DEBUG: "false"
+  APP_DEBUG: "true"
   APP_KEY: ${APP_KEY}
   DB_CONNECTION: mysql
   DB_HOST: ${DB_HOST}
@@ -18,6 +18,8 @@ env:
   CACHE_STORE: array
   SESSION_DRIVER: cookie
   QUEUE_CONNECTION: sync
+  LOG_CHANNEL: stderr
+  LOG_STACK: stderr
 
 command: "/usr/local/bin/php"
 arguments: ["-S", "0.0.0.0:8000", "-t", "/app/public", "/app/server.php"]
