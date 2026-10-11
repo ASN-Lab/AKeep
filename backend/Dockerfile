@@ -9,6 +9,7 @@ RUN apk add --no-cache \
     unzip \
     git \
     curl \
+    ca-certificates \
     oniguruma-dev \
     && docker-php-ext-install pdo pdo_mysql gd zip bcmath
 
