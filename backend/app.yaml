@@ -20,9 +20,6 @@ env:
   QUEUE_CONNECTION: sync
   LOG_CHANNEL: stderr
   LOG_STACK: stderr
-
-command: "/usr/local/bin/php"
-arguments: ["-t", "/app/public", "-S", "0.0.0.0:8000", "/app/public/index.php"]
 kind: wasmer.io/App.v0
 owner: asn-lab
 app_id: da_Ra7IetdUYza7
