@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: akeep-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: akeep-api
+  template:
+    metadata:
+      labels:
+        app: akeep-api
+    spec:
+      containers:
+      - name: akeep-api
+        image: akeep-api:latest
+        ports:
+        - containerPort: 8000
+        envFrom:
+        - secretRef:
+            name: akeep-secrets
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: akeep-api
+spec:
+  selector:
+    app: akeep-api
+  ports:
+  - port: 80
+    targetPort: 8000
+  type: LoadBalancer
