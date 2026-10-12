@@ -29,7 +29,9 @@ RUN cp .env.example .env && php artisan key:generate
 RUN chmod -R 777 storage bootstrap/cache
 
 COPY nginx.conf /etc/nginx/http.d/default.conf
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
 
 EXPOSE 8000
 
-CMD sh -c "php-fpm -D && sed -i 's/listen 8000;/listen ${PORT:-8000};/g' /etc/nginx/http.d/default.conf && nginx -g 'daemon off;'"
+CMD ["/start.sh"]
