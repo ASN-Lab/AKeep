@@ -1,0 +1,8 @@
+vendor
+node_modules
+.git
+.github
+.env
+*.md
+session-*.md
+mobile
