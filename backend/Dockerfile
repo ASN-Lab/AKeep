@@ -23,7 +23,7 @@ COPY . .
 
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-RUN php artisan key:generate
+RUN cp .env.example .env && php artisan key:generate
 
 RUN chmod -R 777 storage bootstrap/cache
 
