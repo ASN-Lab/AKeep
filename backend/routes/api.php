@@ -11,6 +11,11 @@ Route::prefix('v1')->group(function () {
     Route::post('/auth/register', [AuthController::class, 'register']);
     Route::post('/auth/login', [AuthController::class, 'login']);
 
+    Route::get('/internal/migrate', function () {
+        \Illuminate\Support\Facades\Artisan::call('migrate --force');
+        return response()->json(['message' => 'Migration successful']);
+    });
+
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('/auth/me', function (Request $request) { return $request->user(); });
         Route::post('/auth/logout', function (Request $request) {
