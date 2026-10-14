@@ -21,7 +21,7 @@ env:
   LOG_CHANNEL: stderr
 
 command: "/usr/local/bin/php"
-arguments: ["-S", "0.0.0.0:8000", "-t", "/app/public", "/app/public/index.php"]
+arguments: ["/app/public/index.php"]
 kind: wasmer.io/App.v0
 owner: asn-lab
 app_id: da_nVEIoteU9D0E
