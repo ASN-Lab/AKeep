@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('landing');
+Route::get('/migrate-db-internal-only', function () {
+    \Illuminate\Support\Facades\Artisan::call('migrate --force');
+    \Illuminate\Support\Facades\Artisan::call('storage:link');
+    return "Migration Done!";
 });
