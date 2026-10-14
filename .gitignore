@@ -35,3 +35,8 @@ mobile/.dart_tool/
 mobile/.flutter-plugins
 mobile/.flutter-plugins-dependencies
 
+# Wasmer artifacts
+akeep-backend/
+backend/akeep-backend/
+.wasmer/
+
