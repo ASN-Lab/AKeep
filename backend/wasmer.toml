@@ -7,9 +7,7 @@ description = "AKeep Laravel Backend"
 name = "akeep-backend"
 source = "Dockerfile"
 abi = "wasi"
-
-[[command]]
+[[module.command]]
 name = "web"
-module = "akeep-backend"
 entrypoint = "/usr/local/bin/php"
 arguments = ["-S", "0.0.0.0:8000", "-t", "public", "public/index.php"]
