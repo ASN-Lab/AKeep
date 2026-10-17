@@ -78,7 +78,7 @@ flutter run
    ```env
    APP_ENV=production
    APP_DEBUG=false
-   APP_URL=https://<your-wasmer-app>.wasmer.app
+   APP_URL=https://backend-asn-lab.wasmer.app
    DB_CONNECTION=mysql
    DB_HOST=<wasmer-db-host>
    DB_PORT=3306
