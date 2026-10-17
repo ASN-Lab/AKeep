@@ -19,6 +19,7 @@ env:
   SESSION_DRIVER: cookie
   QUEUE_CONNECTION: sync
   LOG_CHANNEL: stderr
+  PORT: "8080"
 kind: wasmer.io/App.v0
 owner: asn-lab
 app_id: da_RbxI9tgUaBdP
