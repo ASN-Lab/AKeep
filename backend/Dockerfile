@@ -1,6 +1,6 @@
 FROM php:8.4-fpm-alpine
 
-WORKDIR /var/www/html
+WORKDIR /app
 
 RUN apk add --no-cache \
     libpng-dev \
@@ -18,7 +18,6 @@ RUN apk add --no-cache \
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 ENV COMPOSER_ALLOW_SUPERUSER=1
-ENV LOG_CHANNEL=stderr
 
 COPY . .
 
@@ -26,9 +25,10 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction
 
 RUN cp .env.example .env && php artisan key:generate
 
-RUN mkdir -p storage/framework/sessions storage/framework/views storage/framework/cache \
-    && chmod -R 777 storage bootstrap/cache
+RUN php artisan optimize
+
+RUN chmod -R 777 storage bootstrap/cache
 
 EXPOSE 8000
 
-CMD php artisan serve --host=0.0.0.0 --port=${PORT:-8080}
+CMD php artisan serve --host=0.0.0.0 --port=${PORT:-8000}
