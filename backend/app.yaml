@@ -6,7 +6,7 @@ fs:
 
 env:
   APP_ENV: production
-  APP_DEBUG: "false"
+  APP_DEBUG: "true"
   APP_KEY: ${APP_KEY}
   APP_URL: ${APP_URL}
   DB_CONNECTION: mysql
@@ -21,8 +21,6 @@ env:
   QUEUE_CONNECTION: sync
   LOG_CHANNEL: stderr
 
-command: "/usr/local/bin/php"
-arguments: ["-S", "0.0.0.0:8000", "-t", "public", "public/index.php"]
 kind: wasmer.io/App.v0
 owner: asn-lab
-app_id: da_RpXImtBU17M3
+app_id: da_nVEIoteU9D0E
