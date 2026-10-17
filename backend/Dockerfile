@@ -17,13 +17,17 @@ RUN apk add --no-cache \
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+ENV COMPOSER_ALLOW_SUPERUSER=1
+ENV LOG_CHANNEL=stderr
+
 COPY . .
 
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
 RUN cp .env.example .env && php artisan key:generate
 
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+RUN mkdir -p storage/framework/sessions storage/framework/views storage/framework/cache \
+    && chmod -R 777 storage bootstrap/cache
 
 EXPOSE 8000
 

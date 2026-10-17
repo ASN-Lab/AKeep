@@ -1,6 +1,6 @@
 [package]
 name = "asn-lab/AKeep"
-version = "0.1.5"
+version = "0.1.6"
 description = "AKeep Laravel Backend"
 
 [[module]]
