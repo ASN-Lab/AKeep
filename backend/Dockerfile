@@ -30,6 +30,9 @@ RUN cp .env.example .env && php artisan key:generate
 RUN mkdir -p storage/framework/sessions storage/framework/views storage/framework/cache \
     && chmod -R 777 storage bootstrap/cache
 
+RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log
+
 COPY nginx.conf /etc/nginx/http.d/default.conf
 
 EXPOSE 8000
