@@ -35,7 +35,7 @@ jobs:
       - name: Build APK Release
         run: |
           cd mobile
-          flutter build apk --release
+          flutter build apk --release --android-skip-build-dependency-validation
 
       - name: Upload Release APK
         uses: softprops/action-gh-release@v2
