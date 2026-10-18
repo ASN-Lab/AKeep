@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiService {
   final Dio dio = Dio(BaseOptions(
-    baseUrl: 'https://backend-asn-lab.wasmer.app/api/v1',
+    baseUrl: 'https://akeep-production.up.railway.app/api/v1',
     connectTimeout: const Duration(seconds: 30),
     receiveTimeout: const Duration(seconds: 30),
     headers: {
