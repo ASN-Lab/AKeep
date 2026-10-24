@@ -1,8 +1,8 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
-import 'package:mobile/services/hive_service.dart';
-import 'package:mobile/models/asset.dart';
+import 'package:akeep/services/hive_service.dart';
+import 'package:akeep/models/asset.dart';
 
 class NotificationService {
   static final FlutterLocalNotificationsPlugin _plugin = FlutterLocalNotificationsPlugin();
@@ -56,3 +56,4 @@ class NotificationService {
     }
   }
 }
+

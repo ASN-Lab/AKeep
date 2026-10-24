@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:mobile/services/api_service.dart';
-import 'package:mobile/services/hive_service.dart';
+import 'package:akeep/services/api_service.dart';
+import 'package:akeep/services/hive_service.dart';
 
 class SyncService {
   final ApiService _api = ApiService();
@@ -30,3 +30,4 @@ class SyncService {
 
   void dispose() => _connectivitySubscription.cancel();
 }
+
