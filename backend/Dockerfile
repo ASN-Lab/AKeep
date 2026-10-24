@@ -23,7 +23,7 @@ ENV LOG_CHANNEL=stderr
 
 COPY . .
 
-RUN composer update --no-dev --optimize-autoloader --no-interaction
+RUN composer install --no-dev --optimize-autoloader --no-interaction
 
 RUN sed -i 's/listen = .*/listen = 127.0.0.1:9000/g' /etc/php84/php-fpm.d/www.conf || true
 
