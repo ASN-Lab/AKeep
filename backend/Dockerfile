@@ -23,9 +23,9 @@ ENV LOG_CHANNEL=stderr
 
 COPY . .
 
-RUN composer install --no-dev --optimize-autoloader --no-interaction
+RUN composer update --no-dev --optimize-autoloader --no-interaction
 
-RUN sed -i 's/listen = .*/listen = 127.0.0.1:9000/g' /etc/php84/php-fpm.d/www.conf || sed -i 's/listen = .*/listen = 127.0.0.1:9000/g' /etc/php83/php-fpm.d/www.conf || true
+RUN sed -i 's/listen = .*/listen = 127.0.0.1:9000/g' /etc/php84/php-fpm.d/www.conf || true
 
 RUN mkdir -p storage/framework/sessions storage/framework/views storage/framework/cache \
     && chmod -R 777 storage bootstrap/cache
