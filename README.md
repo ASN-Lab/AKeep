@@ -15,7 +15,7 @@ AKeep adalah sistem manajemen aset dan inventaris modern berbasis *local-first* 
   - Otentikasi API berbasis token (*Laravel Sanctum*).
   - RESTful API untuk CRUD aset, kategori, dan log perawatan.
   - Endpoint khusus bulk-sync (`/api/v1/sync`).
-- **Dashboard Admin (Filament PHP v3)**:
+- **Dashboard Admin (Filament PHP v5)**:
   - Dashboard statistik total nilai aset, biaya perawatan, dan alert garansi.
   - Pengelolaan aset, kategori, dan user secara visual.
   - Integrasi upload media Cloudinary.
@@ -25,17 +25,18 @@ AKeep adalah sistem manajemen aset dan inventaris modern berbasis *local-first* 
 ## 🛠️ Tech Stack
 
 ### Mobile App
-- **Framework**: Flutter (Dart)
+- **Framework**: Flutter (Dart) 3.47.x
 - **State Management**: Provider
 - **Database Lokal**: Hive
 - **HTTP Client**: Dio
 - **Utilities**: `connectivity_plus`, `flutter_image_compress`, `image_picker`, `flutter_local_notifications`
 
 ### Backend & Admin
-- **Framework**: Laravel 11 (PHP 8.2+)
-- **Admin Panel**: Filament PHP v3
-- **Authentication**: Laravel Sanctum
-- **Database**: SQLite (Dev) / MySQL (Production/Wasmer)
+- **Framework**: Laravel 11 (PHP 8.4)
+- **Admin Panel**: Filament PHP v5 (Latest)
+- **Runtime**: Docker (Nginx + PHP-FPM)
+- **Infrastructure**: Railway (Backend), Vercel (Frontend)
+- **Database**: TiDB Cloud (MySQL Compatible)
 - **Media Storage**: Cloudinary SDK
 
 ---
@@ -45,8 +46,8 @@ AKeep adalah sistem manajemen aset dan inventaris modern berbasis *local-first* 
 ### Prasyarat
 - PHP >= 8.2
 - Composer
-- Flutter SDK (stable)
-- Node.js & npm
+- Flutter SDK (stable) 3.47.x
+- Node.js & npm (untuk build Filament assets)
 
 ### 1. Setup Backend (Laravel)
 ```bash
@@ -65,37 +66,41 @@ cd mobile
 flutter pub get
 flutter run
 ```
-> **Catatan Endpoint**: Atur IP backend di `mobile/lib/services/api_service.dart` (gunakan IP lokal `http://10.0.2.2:8000` untuk emulator Android).
+> **Catatan Endpoint**: Atur IP backend di `mobile/lib/services/api_service.dart`.
 
 ---
 
 ## ☁️ Panduan Production & Deployment
 
-### Deployment Server (Wasmer)
-1. **Database Setup**: Gunakan database MySQL yang disediakan oleh Wasmer.
+### Deployment Server (Railway)
+1. **Root Directory**: Set ke `backend/`.
 2. **Environment Variables**:
-   Atur variabel berikut pada dashboard Wasmer:
+   Atur variabel berikut pada dashboard Railway:
    ```env
    APP_ENV=production
    APP_DEBUG=false
-   APP_URL=https://backend-asn-lab.wasmer.app
+   APP_URL=https://akeep-production.up.railway.app
    DB_CONNECTION=mysql
-   DB_HOST=<wasmer-db-host>
-   DB_PORT=3306
-   DB_DATABASE=<wasmer-db-name>
-   DB_USERNAME=<wasmer-db-user>
-   DB_PASSWORD=<wasmer-db-password>
+   DB_HOST=<tidb-host>
+   DB_PORT=4000
+   DB_DATABASE=<tidb-db-name>
+   DB_USERNAME=<tidb-user>
+   DB_PASSWORD=<tidb-password>
+   DB_SSL_CA=/etc/ssl/certs/ca-certificates.crt
    CLOUDINARY_URL=cloudinary://<api_key>:<api_secret>@<cloud_name>
    ```
-3. **Build & Deploy Container**: Perintah deploy di Wasmer menggunakan `Dockerfile` yang sudah tersedia di folder `backend/`.
+3. **Nginx Optimization**: Konfigurasi Nginx kustom tersedia di `backend/nginx.conf` untuk menangani response besar dari Filament Dashboard.
+
+### Deployment Frontend (Vercel)
+Landing page statis di-deploy ke Vercel dengan mengarahkan **Root Directory** ke folder `frontend/`.
 
 ### Publish Aplikasi Mobile (APK)
 Aplikasi mobile dibuild secara otomatis menggunakan **GitHub Actions**:
-1. Buat git tag baru, misalnya `v1.0.0`:
+1. Buat git tag baru, misalnya `v1.2.1`:
    ```bash
-   git tag v1.0.0
-   git push origin v1.0.0
+   git tag v1.2.1
+   git push origin v1.2.1
    ```
-2. Workflow GitHub Actions (`.github/workflows/apk-release.yml`) akan otomatis membuat release di GitHub dan mengunggah file `app-release.apk`.
-3. Tombol **Download APK** di landing page web akan secara otomatis mengunduh APK versi terbaru melalui link GitHub Release:
+2. Workflow akan otomatis membangun APK dengan branding **AKeep** (Package: `akeep`, ID: `com.akeep.tracker`).
+3. Tombol **Download APK** di landing page web akan mengunduh APK versi terbaru melalui:
    `https://github.com/ASN-Lab/AKeep/releases/latest/download/app-release.apk`
